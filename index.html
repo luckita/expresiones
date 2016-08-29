@@ -2,33 +2,54 @@
 <html>
 <head>
     <title>Expresiones temporales v0.1</title>
+    <!--<script src="funciones.js"></script>-->
     <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 </head>
-<body>
- 
 
-<div class="i2Style" onclick="working()">Expresiones temporales v0.1</div>
-    
-     
+<!-- define angular controller -->
+<body ng-controller="mainController">
 
-<p id="demo">JavaScript can change HTML content.</p>
+<!--<div class="i2Style" onclick="working()">Expresiones temporales v0.1</div>
 
-<button type="button" onclick="document.getElementById('demo').innerHTML = 'Changed directly.'">Change the text directly</button>
+<!-- define angular app -->
+<html ng-app="scotchApp">
 
-<script src="funciones.js"></script>
-<button type="button" onclick="myFunction()">Change with function</button>
- 
-<br><br><p id="changingtext">A new text will appear here</p>
-<button type="button" onclick="changeText('Ta-dah!')">Show a text!</button>
-    
-<br>
-<p id="persona"></p>
-<button type="button" onclick="dameDatos()">Tell me about him</button>   
-    
-<br>
-<br>
-<a href="lincurioso.html" class="myButton">Vamo' a lo que vinimo'</a>
-    
-    
+<!-- SPELLS -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+<script src="angscript.js"></script>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Expresiones temporales</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="palabras.html"><i class="fa fa-book fa-fw"></i> Palabras</a></li>
+            <li><a href="#expresiones"><i class="fa fa-pencil fa-fw"></i> Expresiones</a></li>
+            <li><a href="cyto.html"><i class="fa fa-spinner fa-spin"></i> Grafos</a></li>
+            <li><a href="about.html"><i class="fa fa-comment"></i> About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div id="main">
+
+    texto
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div ng-view></div>
+
+</div>
+
+<footer class="text-center">
+    Site under construction. DND.
+</footer>
+
 </body>
+
 </html>
