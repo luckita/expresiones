@@ -1,0 +1,49 @@
+{
+    /*nodes: [ { name: "palabra", type: "string" },
+            { name: "expresion_palabra", type: "array" } //para empezar, string, pero mejor si lista todas las expresiones que esa palabra tiene
+           ],
+    edges: [ { name: "expresion", type: "string" },
+           ]
+    },*/
+
+// NOTE the custom attributes on nodes and edges
+data: {
+    nodes: [
+        { 
+        "id": "n1", 
+        "palabra": "Abril", 
+        "expresion_palabra": "ORDEN +DELIMITADO"
+        },
+        { 
+        "id": "n3", 
+        "palabra": "verano", 
+        "expresion_palabra": "ORDEN"
+        },
+        { 
+        "id": "n4", 
+        "palabra": "verano", 
+        "expresion_palabra": "+RECURRENTE"
+        },
+        { 
+        "id": "n5", 
+        "palabra": "este año", 
+        "expresion_palabra": "+DELIMITADO"
+        }
+     ],   
+    edges: [ 
+        { 
+        "id": "e1",
+        "source": "n1",
+        "target": "n3",
+        "label": "ORDEN"
+        //"bar": "Caught in a landslide..." 
+        },
+        { 
+        "id": "e2",
+        "source": "n1",
+        "target": "n5",
+        "label": "+DELIMITADO"
+        },
+
+]
+}

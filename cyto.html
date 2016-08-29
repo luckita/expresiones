@@ -2,7 +2,7 @@
 <html>
     
     <head>
-        <title>Cytoscape Web example</title>
+        <title>Expresiones con Cytoscape Web</title>
         
         <script type="text/javascript" src="/cytoscapeweb_v1/js/src/json2.js"></script>
         <script type="text/javascript" src="/cytoscapeweb_v1/js/src/AC_OETags.js"></script>
@@ -26,14 +26,36 @@
                     	},
                     	// NOTE the custom attributes on nodes and edges
                         data: {
-                            nodes: [ { id: "1", label: "1", foo: "Is this the real life?" },
-                                     { id: "2", label: "2", foo: "Is this just fantasy?" },
-                                    { id: "3", label: "texto largo a ver 3", foo: "something" },
-                                    { id: "4", label: "4", foo: "anything" },
-                                    { id: "5", label: "text5", foo: "everything" }
+                            nodes: [ { id: "1", label: "infancia", foo: "Is this the real life?" },
+                                     { id: "2", label: "Edad Media", foo: "Is this just fantasy?" },
+                                    { id: "3", label: "Neolítico", foo: "something" },
+                                    { id: "4", label: "lunes", foo: "anything" },
+                                    { id: "5", label: "verano", foo: "everything" }
                             ],
-                            edges: [ { id: "2to1", target: "1", source: "2", label: "2 to 1", bar: "Caught in a landslide..." },
-                                    { id: "4to5", target: "5", source: "4", label: "etiquetando", bar: "What is a bar anyway?" }
+                            edges: [ { id: "1to2", target: "1", source: "2", label: "[-RECURRENTE]", bar: "..." },
+                                    { id: "1to3", target: "1", source: "3", label: "[-RECURRENTE]", bar: "..." },
+                                    { id: "2to3", target: "2", source: "3", label: "[-RECURRENTE]", bar: "..."},
+                                    { id: "4to5", target: "5", source: "4", label: "[+RECURRENTE]", bar: "..." },
+                                    //+DELIMITADO
+                                    { id: "DEL1", target: "1", source: "2", label: "[+DELIMITADO]", bar: "..." },
+                                    { id: "DEL2", target: "1", source: "3", label: "[+DELIMITADO]", bar: "..." },
+                                    { id: "DEL3", target: "1", source: "4", label: "[+DELIMITADO]", bar: "..." },
+                                    { id: "DEL4", target: "1", source: "5", label: "[+DELIMITADO]", bar: "..." },
+                                    { id: "DEL5", target: "2", source: "3", label: "[+DELIMITADO]", bar: "..." },
+                                    { id: "DEL6", target: "2", source: "4", label: "[+DELIMITADO]", bar: "..." },
+                                    { id: "DEL7", target: "2", source: "5", label: "[+DELIMITADO]", bar: "..." },
+                                    { id: "DEL8", target: "3", source: "4", label: "[+DELIMITADO]", bar: "..." },
+                                    { id: "DEL9", target: "4", source: "5", label: "[+DELIMITADO]", bar: "..." },
+                                    //+ESPECIFICADO
+                                    { id: "ESP1", target: "1", source: "2", label: "[+ESPECIFICADO]", bar: "..." },
+                                    { id: "ESP2", target: "1", source: "3", label: "[+ESPECIFICADO]", bar: "..." },
+                                    { id: "ESP3", target: "1", source: "4", label: "[+ESPECIFICADO]", bar: "..." },
+                                    { id: "ESP4", target: "1", source: "5", label: "[+ESPECIFICADO]", bar: "..." },
+                                    { id: "ESP5", target: "2", source: "3", label: "[+ESPECIFICADO]", bar: "..." },
+                                    { id: "ESP6", target: "2", source: "4", label: "[+ESPECIFICADO]", bar: "..." },
+                                    { id: "ESP7", target: "2", source: "5", label: "[+ESPECIFICADO]", bar: "..." },
+                                    { id: "ESP8", target: "3", source: "4", label: "[+ESPECIFICADO]", bar: "..." },
+                                    { id: "ESP9", target: "4", source: "5", label: "[+ESPECIFICADO]", bar: "..." }
                             ]
                         }
                 };
@@ -44,6 +66,77 @@
                     flashInstallerPath: "/cytoscapeweb_v1/swf/playerProductInstall"
                 };
                 
+                //visual style
+                  var visual_style = {
+                      global: {
+                        backgroundColor: "#ffffff"
+                    },
+                    nodes: {
+                        shape: "CIRCLE",
+                        borderWidth: 1,
+                        borderColor: "#F93E4F",
+                        labelFontName: "Avenir",
+                        labelFontSize: 14,
+                        size: {
+                            defaultValue: 100,
+                            continuousMapper: { attrName: "weight", minValue: 100, maxValue: 200 }
+                        },
+                        color: {
+                            discreteMapper: {
+                                attrName: "id",
+                                entries: [
+                                    { attrValue: 1, value: "#8DFF33" },
+                                    { attrValue: 2, value: "#E39BFA" },
+                                    { attrValue: 3, value: "#88DFF5" },
+                                    { attrValue: 4, value: "#F6E152" },
+                                    { attrValue: 5, value: "#F0856B" }
+                                ]
+                            }
+                        },
+                        labelHorizontalAnchor: "center"
+                    },
+                    edges: {
+                        width: 3,
+                        color: {
+                            discreteMapper: {///////////////
+                                attrName: "id",
+                                entries: [
+                                    ///-REC en ROSADO
+                                    { attrValue: "1to2", value: "#F40A91" },
+                                    { attrValue: "1to3", value: "#F40A91" },
+                                    { attrValue: "2to3", value: "#F40A91" },
+                                    //+REC en NARANJA
+                                    { attrValue: "4to5", value: "#F3AA0F" },
+                                    //+DEL en VERDE OSCURO
+                                    { attrValue: "DEL1", value: "#0D680A" },
+                                    { attrValue: "DEL2", value: "#0D680A" },
+                                    { attrValue: "DEL3", value: "#0D680A" },
+                                    { attrValue: "DEL4", value: "#0D680A" },
+                                    { attrValue: "DEL5", value: "#0D680A" },
+                                    { attrValue: "DEL6", value: "#0D680A" },
+                                    { attrValue: "DEL7", value: "#0D680A" },
+                                    { attrValue: "DEL8", value: "#0D680A" },
+                                    { attrValue: "DEL9", value: "#0D680A" },
+                                    //+ESP en AZUL CHILLON
+                                    { attrValue: "ESP1", value: "#128DF3" },
+                                    { attrValue: "ESP2", value: "#128DF3" },
+                                    { attrValue: "ESP3", value: "#128DF3" },
+                                    { attrValue: "ESP4", value: "#128DF3" },
+                                    { attrValue: "ESP5", value: "#128DF3" },
+                                    { attrValue: "ESP6", value: "#128DF3" },
+                                    { attrValue: "ESP7", value: "#128DF3" },
+                                    { attrValue: "ESP8", value: "#128DF3" },
+                                    { attrValue: "ESP9", value: "#128DF3" }
+                                ]
+                            }//////////////////////////
+                        },//"#F9A13E",
+                        style: "DOT",
+                        labelFontSize: 14,
+                        labelFontName: "Avenir",
+                        labelFontWeight: "bold"
+                    }
+                };
+                
                 var vis = new org.cytoscapeweb.Visualization(div_id, options);
                 
                 // callback when Cytoscape Web has finished drawing
@@ -51,23 +144,55 @@
                 
                     // add a listener for when nodes and edges are clicked
                     vis.addListener("click", "nodes", function(event) {
-                        handle_click(event);
+                        handle_node_click(event);
                     })
                     .addListener("click", "edges", function(event) {
-                        handle_click(event);
+                        handle_edge_click(event);
                     });
                     
-                    function handle_click(event) {
+                    function handle_edge_click(event) {
+                         var target = event.target;
+                         
+                        clear();
+                        print("Edge clicked! Event.group = " + event.group);
+                      
+                        var sourceID = target.data["source"];
+                        var targetID = target.data["target"];
+                        print("El origen: " + sourceID + " El destino: " + targetID);
+                        
+                        
+                        
+                        cy.nodes().forEach(function( ele ){
+                            console.log( ele.id() );
+                        });
+                        
+                        /*print(cy.nodes[0]);
+                        print(cy.nodesArray[1]);
+                        for(var i in cy.nodesArray){
+                            print("paseando por los nodos...");
+                            print(cy.nodes[i]);
+                        }
+                         for (var i in target.data) {
+                            var variable_name = i;
+                            var variable_value = target.data["target"];
+                            print( "event.target.data." + variable_name + " = " + variable_value );
+                         }*/
+                    }
+                    
+                    //////
+                    function handle_node_click(event) {
                          var target = event.target;
                          
                          clear();
-                         print("event.group = " + event.group);
+                         print("Node's clicked! Event.group = " + event.group);
                          for (var i in target.data) {
                             var variable_name = i;
                             var variable_value = target.data[i];
+                            
                             print( "event.target.data." + variable_name + " = " + variable_value );
                          }
                     }
+                    /////
                     
                     function clear() {
                         document.getElementById("note").innerHTML = "";
@@ -81,11 +206,13 @@
                 // draw options
                 var draw_options = {
                     // your data goes here
-                    network: network_json,
+                    network: network_json, //network: xml, otra opcion
                     // hide pan zoom
-                    panZoomControlVisible: false 
+                    panZoomControlVisible: false,
+                    edgeLabelsVisible : true,
+                    visualStyle : visual_style
+                    
                 };
-                
                 vis.draw(draw_options);
             };
         </script>
@@ -95,8 +222,8 @@
             html, body { height: 100%; width: 100%; padding: 0; margin: 0; }
             body { line-height: 1.5; color: #000000; font-size: 14px; }
             /* The Cytoscape Web container must have its dimensions set. */
-            #cytoscapeweb { width: 100%; height: 50%; }
-            #note { width: 100%; height: 50%; background-color: #f0f0f0; overflow: auto;  }
+            #cytoscapeweb { width: 100%; height: 70%; }
+            #note { width: 100%; height: 30%; background-color: #f0f0f0; overflow: auto;  }
             p { padding: 0 0.5em; margin: 0; }
             p:first-child { padding-top: 0.5em; }
         </style>
@@ -104,7 +231,7 @@
     
     <body>
         <div id="cytoscapeweb">
-            Cytoscape Web will replace the contents of this div with your graph.
+            Grafeando... Espere...
         </div>
         <div id="note">
             <p>Click nodes or edges.</p>
