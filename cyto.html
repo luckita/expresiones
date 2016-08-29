@@ -18,10 +18,10 @@
                         // you need to specify a data schema for custom attributes!
                         dataSchema: {
                     		nodes: [ { name: "label", type: "string" },
-                    		         { name: "foo", type: "string" }
+                    		         { name: "foo", type: "string" }/////
            		         	],
 							edges: [ { name: "label", type: "string" },
-							         { name: "bar", type: "string" }
+							         { name: "bar", type: "string" }/////
 							]
                     	},
                     	// NOTE the custom attributes on nodes and edges
@@ -151,18 +151,23 @@
                     });
                     
                     function handle_edge_click(event) {
-                         var target = event.target;
+                        var target = event.target;
                          
                         clear();
                         print("Edge clicked! Event.group = " + event.group);
                       
-                        var sourceID = target.data["source"];
-                        var targetID = target.data["target"];
+                        var sourceID = target.data.source;
+                        var targetID = target.data.target;
                         print("El origen: " + sourceID + " El destino: " + targetID);
                         
+                        print("Expresión temporal seleccionada: " + target.data.label);
+                        //print("Palabras vinculadas en esta expresión: " + vis.getElementById('1'));//fruta .nodes() getElementById no camina
+                        //var pals = "";
+                        for (var i in vis.nodes()) {
+                           print(i); //como coroncho obtengo las palabras a partir del id, nodes method gggggh
+                        }
                         
-                        
-                        cy.nodes().forEach(function( ele ){
+                        /*cy.nodes.forEach(function( ele ){
                             console.log( ele.id() );
                         });
                         
